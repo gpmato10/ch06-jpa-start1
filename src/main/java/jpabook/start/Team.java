@@ -10,6 +10,23 @@ public class Team {
     @Column(name = "TEAM_ID")
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<Member>();
+
+    public void addMember(Member member) {
+        members.add(member);
+        if (member.getTeam() != this) {
+            member.setTeam(this);
+        }
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
 
     public Team(Long id, String name) {
         this.id = id;
