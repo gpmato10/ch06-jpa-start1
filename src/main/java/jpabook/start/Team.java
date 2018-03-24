@@ -10,15 +10,15 @@ public class Team {
     @Column(name = "TEAM_ID")
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "team")
+
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<Member>();
 
-    public void addMember(Member member) {
-        members.add(member);
-        if (member.getTeam() != this) {
-            member.setTeam(this);
-        }
+    public Team(String name) {
+        this.name = name;
     }
+
 
     public List<Member> getMembers() {
         return members;

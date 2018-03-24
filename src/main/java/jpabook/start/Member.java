@@ -9,15 +9,10 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
     private String username;
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
 
-    public void setTeam(Team team) {
-        this.team = team;
-        if (!team.getMembers().contains(this)) {
-            team.getMembers().add(this);
-        }
+
+    public Member(String username) {
+        this.username = username;
     }
 
     public Long getId() {
@@ -36,7 +31,4 @@ public class Member {
         this.username = username;
     }
 
-    public Team getTeam() {
-        return team;
-    }
 }
